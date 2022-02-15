@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+a{
+  text-decoration: none;
+}
+a:hover{
+    opacity: .9;
+}
+app-header{
+  width: 100%;
+  height: 68px;
+  background-color: #1976d2;
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+app-header h1{
+    color: rgb(255, 255, 255);
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  margin: auto;
+  text-align: center;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}

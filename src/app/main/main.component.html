@@ -1,0 +1,13 @@
+<form [formGroup]="queryForm" (ngSubmit)="newQuery()"> 
+    <div>
+        <input id="query" type="text" formControlName="name" onchange="newQuery()">
+    </div>  
+</form>
+<div *ngFor="let book of this.books">
+    <a [routerLink]="['/book', book.id]">
+        <div class="card">
+            <img src={{book.imgUrl}}>
+            <h2>{{book.title}}</h2>
+        </div>
+    </a>
+</div>

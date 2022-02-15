@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "book-g": {
+      "hosting": {
+        "book-goals": [
+          "book-g"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "book-g"
+  }
+}

@@ -1,1 +1,8 @@
-<p>login works!</p>
+<form [formGroup]="queryForm" (ngSubmit)="newQuery()"> 
+    <div>
+        <input id="email" type="text" formControlName="email">
+        <input id="password" type="text" formControlName="password">
+        <button class="submit">Log in</button>
+    </div>  
+</form>
+{{this.currentUser!['email']}};

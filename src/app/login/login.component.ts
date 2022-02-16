@@ -1,22 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { collection, collectionData, DocumentData, Firestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs/internal/Observable';
-
+import { Form, FormBuilder} from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user: Observable<DocumentData[]> | undefined;
-  constructor(private firestore: Firestore) { }
+  users: Observable<DocumentData[]> | undefined;
+  currentUser: DocumentData | undefined;
+  queryForm = this.formBuilder.group({
+    email: '',
+    password: '',
+  });
+  constructor(private firestore: Firestore, private formBuilder: FormBuilder) { }
   ngOnInit(): void {
-    this.user = collectionData(collection(this.firestore, 'Users'));
-    this.user.subscribe(
+  }
+  newQuery(){
+    this.users = collectionData(collection(this.firestore, 'Users'));
+    this.users.subscribe(
       data=>{
-        alert(data[0]['email']);
+        this.currentUser = ((data.find((user) => user['email'] === this.queryForm.value.email)));
       }
     );
   }
-
 }

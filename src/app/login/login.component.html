@@ -1,8 +1,12 @@
-<form [formGroup]="queryForm" (ngSubmit)="newQuery()"> 
+<!-- <form [formGroup]="queryForm" (ngSubmit)="queryUser()"> 
     <div>
         <input id="email" type="text" formControlName="email">
         <input id="password" type="text" formControlName="password">
         <button class="submit">Log in</button>
     </div>  
-</form>
-{{this.currentUser!['email']}};
+</form> -->
+<!-- {{this.currentUser!['email']}}; -->
+<div>
+    <button id="btnGoogle" (click)="this.signInWithGoogle()">Continue with Google</button>
+    <button id="btnSignOut" (click)="this.signOut()">Sign Out</button>
+</div>

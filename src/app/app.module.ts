@@ -18,6 +18,9 @@ import { environment } from 'src/environments/environment';
 import { LoginComponent } from './login/login.component';
 import { AccountComponent } from './account/account.component';
 import { ResultsComponent } from './results/results.component';
+import { SETTINGS as AUTH_SETTINGS } from '@angular/fire/compat/auth';
+import {AngularFireModule} from '@angular/fire/compat';
+
 
 @NgModule({
   declarations: [
@@ -26,13 +29,13 @@ import { ResultsComponent } from './results/results.component';
     LoginComponent,
     MainComponent,
     BookDetailsComponent,
-    LoginComponent,
     AccountComponent,
     ResultsComponent,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
     AppRoutingModule,
     HttpClientModule,
     SocialLoginModule,
@@ -48,6 +51,10 @@ import { ResultsComponent } from './results/results.component';
   ],
   providers: [
     LoginComponent,
+    ResultsComponent,
+    MainComponent,
+    HeaderComponent,
+    { provide: AUTH_SETTINGS, useValue: { appVerificationDisabledForTesting: true } },
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {

@@ -1,51 +1,42 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { BooksService } from '../books.service';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
 import { collection, collectionData, DocumentData, Firestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { UsersService } from '../users.service';
+import { LibraryService } from '../library.service';
+import { SaveService } from '../save.service';
+import { GoalService } from '../goal.service';
+import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent implements OnInit {
+export class MainComponent  {
+  @Input() userGo: UsersService | undefined;
+  @Input() libGo: LibraryService[] | undefined;
+  @Input() goalGo: GoalService[] | undefined;
   public static user: SocialUser;
+  emitUser(user: UsersService) {
+    this.userGo =user;
+  }
+  emitLib(lib: LibraryService[]) {
+    this.libGo = lib;
+  }
+  emitGoal(goal: GoalService[]) {
+    this.goalGo = goal;
+  }
   public thisUser: SocialUser = MainComponent.user;
   public myUser: UsersService | undefined;
   public libBook: string | undefined;
+  public goals: GoalService[] = [];
+  public libraries: LibraryService[] = []; 
+  private usersCollection: AngularFirestoreCollection | undefined;
   users: Observable<DocumentData[]> | undefined;
-  constructor(public booksService: BooksService, private authService: SocialAuthService, private firestore: Firestore) {}
-  ngOnInit(): void {
-    if(MainComponent.user == undefined){
-      this.authService.authState.subscribe(user => {
-        MainComponent.user = user;
-        this.thisUser = MainComponent.user;
-        if(MainComponent.user != undefined){
-          document.getElementById('login')!.style.display = 'none';
-          this.users = collectionData(collection(this.firestore, 'Users'));
-          this.users.subscribe(
-            data=>{
-              const tmp: DocumentData = data[data.findIndex((user) => user['email'] === MainComponent.user?.email)];
-              this.myUser = new UsersService(tmp['email'], tmp['name'], tmp['password'], tmp['dateUpdated'], tmp['save']);
-              JSON.parse(this.myUser.save.toString(), (key, value) =>{
-                if(key == 'libs'){
-                  console.log(value);
-                }
-                switch(key){
-                    // this.libBook = value[0].book;
-
-                }
-              }
-              );
-            }
-          );
-        }
-        else{
-          document.getElementById('logout')!.style.display = 'none';
-        }
-      });
-    }
-  }
+  constructor(private authService: SocialAuthService, private firestore: Firestore, private router: Router, private auth: AngularFireAuth, private afs: AngularFirestore) {}
+  
 }

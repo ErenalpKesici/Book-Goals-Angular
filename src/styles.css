@@ -1,12 +1,12 @@
 a{
   text-decoration: none;
 }
-a:hover{
-    opacity: .9;
+.clickable:hover{
+  opacity: .9;
+  cursor:pointer
 }
 div{
   text-align: center;
-  margin: auto;
 }
 body {
   font-family: Helvetica, sans-serif;
@@ -17,6 +17,18 @@ body {
 .column{
   display: table-cell;
   border: none;
+  padding: 20px;
+}
+.progress{
+  height: 50px;
+  background-color: #1976d2;
+}
+.outline{
+  height: 50px;
+  width: 500px;
+  border: 1px;
+  border-style: solid;
+  border-color: grey;
 }
 app-header{
   width: 100%;
@@ -31,7 +43,6 @@ app-header{
 app-header h1{
     color: rgb(255, 255, 255);
 }
-
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;

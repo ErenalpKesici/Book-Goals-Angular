@@ -1,4 +1,4 @@
-<a [routerLink]="['/']">
+<a class="clickable" [routerLink]="['/']">
     <h1>Home</h1>
 </a>
 <form [formGroup]="queryForm" (ngSubmit)="doSearch()"> 
@@ -10,4 +10,8 @@
 <a id="login" [routerLink]="['/login']">
   <h1>Login</h1>
 </a>
-<h1 id="logout" style="cursor:pointer" (click)="this.logOut()">Log Out</h1>
+<div *ngIf="this.thisUser">
+  <img src={{this.thisUser?.photoUrl}}>
+  <h3 >Welcome {{this.thisUser?.name}}!</h3>
+</div>
+<h1 id="logout" class="clickable" (click)="this.logOut()">Log Out</h1>

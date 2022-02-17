@@ -1,5 +1,11 @@
-<div class="card container">
-    <h3  >Welcome {{this.thisUser?.name}}!</h3>
-    <img src={{this.thisUser?.photoUrl}}>
+<app-header (userGo)="emitUser($event)" (libGo)="emitLib($event)" (goalGo)="emitGoal($event)"></app-header>
+<div *ngIf="this.userGo">
+   <div  class="outline">
+      <div class="progress" id="progress"></div>
+   </div>
+   <div class="card row" *ngFor="let lib of this.libGo">
+      <img src={{lib.book.imgUrl}}>
+      <h3 class="column">{{lib.book.title}}</h3>
+      <h5 class="column">{{lib.message}}</h5>
+   </div>
 </div>
-{{this.myUser?.save}}

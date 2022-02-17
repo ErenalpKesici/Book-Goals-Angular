@@ -1,4 +1,8 @@
+<app-header></app-header>
 <div class="card">
     <img src={{book?.imgUrl}}>
     <h2>{{book?.title}}</h2>
+    <button (click)="addToLibrary('Reading')">Reading</button>
+    <button (click)="addToLibrary('Want to Read')">Want to Read</button>
+    <button (click)="addToLibrary('Read')">Read</button>
 </div>

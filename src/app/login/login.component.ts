@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { collection, collectionData, DocumentData, Firestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs/internal/Observable';
 import { Form, FormBuilder} from '@angular/forms';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from 'firebase/compat/app';
 import { GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 import { Router, RouterLink } from '@angular/router';
 import { MainComponent } from '../main/main.component';
@@ -31,6 +33,7 @@ export class LoginComponent implements OnInit {
   }
   public signOut(): void {
     this.authService.signOut();
+    this.authService.authState
     MainComponent.user = new SocialUser();
     document.getElementById('logout')!.style.display = 'none';
     document.getElementById('login')!.style.display = 'inline';

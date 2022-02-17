@@ -10,8 +10,7 @@
 <a id="login" [routerLink]="['/login']">
   <h1>Login</h1>
 </a>
-<div *ngIf="this.thisUser">
-  <img src={{this.thisUser?.photoUrl}}>
-  <h3 >Welcome {{this.thisUser?.name}}!</h3>
+<div *ngIf="this.user">
+  <h3 >Welcome {{this.user.name}}!</h3>
 </div>
 <h1 id="logout" class="clickable" (click)="this.logOut()">Log Out</h1>

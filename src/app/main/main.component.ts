@@ -20,7 +20,6 @@ export class MainComponent  {
   @Input() userGo: UsersService | undefined;
   @Input() libGo: LibraryService[] | undefined;
   @Input() goalGo: GoalService[] | undefined;
-  public static user: SocialUser;
   emitUser(user: UsersService) {
     this.userGo =user;
   }
@@ -30,13 +29,6 @@ export class MainComponent  {
   emitGoal(goal: GoalService[]) {
     this.goalGo = goal;
   }
-  public thisUser: SocialUser = MainComponent.user;
-  public myUser: UsersService | undefined;
-  public libBook: string | undefined;
-  public goals: GoalService[] = [];
-  public libraries: LibraryService[] = []; 
-  private usersCollection: AngularFirestoreCollection | undefined;
-  users: Observable<DocumentData[]> | undefined;
   constructor(private authService: SocialAuthService, private firestore: Firestore, private router: Router, private auth: AngularFireAuth, private afs: AngularFirestore) {}
   
 }

@@ -7,6 +7,7 @@ import firebase from 'firebase/compat/app';
 import { GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 import { Router, RouterLink } from '@angular/router';
 import { MainComponent } from '../main/main.component';
+import { AppComponent } from '../app.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
   public signOut(): void {
     this.authService.signOut();
     this.authService.authState
-    MainComponent.user = new SocialUser();
+    AppComponent.user = new SocialUser();
     document.getElementById('logout')!.style.display = 'none';
     document.getElementById('login')!.style.display = 'inline';
   }

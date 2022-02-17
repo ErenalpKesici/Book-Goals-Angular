@@ -13,7 +13,7 @@ import { MainComponent } from './main/main.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth,getAuth } from '@angular/fire/auth';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideFirestore,getFirestore, FirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { LoginComponent } from './login/login.component';
 import { AccountComponent } from './account/account.component';
@@ -51,9 +51,8 @@ import {AngularFireModule} from '@angular/fire/compat';
   ],
   providers: [
     LoginComponent,
-    ResultsComponent,
     MainComponent,
-    HeaderComponent,
+    AppComponent,
     { provide: AUTH_SETTINGS, useValue: { appVerificationDisabledForTesting: true } },
     {
       provide: 'SocialAuthServiceConfig',

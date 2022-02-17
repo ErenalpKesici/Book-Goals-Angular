@@ -10,6 +10,7 @@ import { MainComponent } from '../main/main.component';
 import { SaveService } from '../save.service';
 import { GoalService } from '../goal.service';
 import { LibraryService } from '../library.service';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-book-details',
@@ -29,7 +30,7 @@ export class BookDetailsComponent implements OnInit {
   addToLibrary(message: String): void{
     this.usersCollection = this.afs.collection<UsersService>('Users');
     SaveService.libs.push(new LibraryService(this.book!, message));
-    this.usersCollection.doc(MainComponent.user.email).update({save: JSON.stringify(new SaveCombined(SaveService.goals, SaveService.libs))});
+    // this.usersCollection.doc(AppComponent.user.email).update({save: JSON.stringify(new SaveCombined(SaveService.goals, SaveService.libs))});
   }
 }
 

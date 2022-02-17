@@ -1,0 +1,8 @@
+<div *ngFor="let book of this.books">
+    <a [routerLink]="['/book', book.id]">
+        <div class="card">
+            <img src={{book.imgUrl}}>
+            <h2>{{book.title}}</h2>
+        </div>
+    </a>
+</div>

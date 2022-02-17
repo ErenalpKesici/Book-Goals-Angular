@@ -13,7 +13,6 @@ import { MainComponent } from '../main/main.component';
 export class LoginComponent implements OnInit {
   users: Observable<DocumentData[]> | undefined;
   public user: SocialUser = new SocialUser;
-  // currentUser: DocumentData | undefined;
   private currentUser: SocialUser | undefined;
   queryForm = this.formBuilder.group({
     email: '',
@@ -21,22 +20,20 @@ export class LoginComponent implements OnInit {
   });
   constructor(private firestore: Firestore, private formBuilder: FormBuilder, private authService: SocialAuthService, private router: Router) { }
   ngOnInit(): void {
-    if(MainComponent.user == undefined){
-      document.getElementById('btnSignOut')!.style.display = 'none';
-    }else{
-      document.getElementById('btnGoogle')!.style.display = 'none';
-    }
   }
   public signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then((value)=>{
       this.currentUser = value;
       this.router.navigate(['/']);
+      document.getElementById('login')!.style.display = 'none';
+      document.getElementById('logout')!.style.display = 'inline';
     });
   }
   public signOut(): void {
     this.authService.signOut();
     MainComponent.user = new SocialUser();
-    this.router.navigate(['/']);
+    document.getElementById('logout')!.style.display = 'none';
+    document.getElementById('login')!.style.display = 'inline';
   }
   // queryUser(){
   //   this.users = collectionData(collection(this.firestore, 'Users'));

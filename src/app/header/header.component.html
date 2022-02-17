@@ -1,8 +1,13 @@
 <a [routerLink]="['/']">
     <h1>Home</h1>
 </a>
-
-<a [routerLink]="['/login']">
+<form [formGroup]="queryForm" (ngSubmit)="doSearch()"> 
+  <div class="row">
+      <input class="column"  id="query" placeholder="Search for a book..." type="text" formControlName="name">
+      <input class="column" type="submit" value="Search">
+  </div>  
+</form>
+<a id="login" [routerLink]="['/login']">
   <h1>Login</h1>
 </a>
-
+<h1 id="logout" style="cursor:pointer" (click)="this.logOut()">Log Out</h1>

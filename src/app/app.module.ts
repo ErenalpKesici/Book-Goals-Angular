@@ -17,15 +17,18 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { LoginComponent } from './login/login.component';
 import { AccountComponent } from './account/account.component';
+import { ResultsComponent } from './results/results.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    LoginComponent,
     MainComponent,
     BookDetailsComponent,
     LoginComponent,
-    AccountComponent
+    AccountComponent,
+    ResultsComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import { AccountComponent } from './account/account.component';
       {path: '', component: MainComponent},
       {path: 'book/:bookId', component: BookDetailsComponent},
       {path: 'login', component: LoginComponent},
+      {path: 'results/:query', component: ResultsComponent},
     ]),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),

@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UsersService {
-  constructor(private email: String, private name: String, private password: String, private dateUpdated: String, private save: String, ) { };
-  public toString(): String{
+  constructor(public email: String, public name: String, private password: String, public dateUpdated: String, public save: String, ) { };
+  public tostring(): string{
     return this.email+" " + this.password+" "+this.save;
   }
 }
